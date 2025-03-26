@@ -1,6 +1,6 @@
 SELECT 
     o.Razao_Social,
-    o.Nome_Fantasia,
+    o.nome,
     SUM(s.valor_despesa) AS total_despesas
 FROM 
     operadoras o
