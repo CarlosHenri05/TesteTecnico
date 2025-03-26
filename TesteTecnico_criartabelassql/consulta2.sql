@@ -10,7 +10,7 @@ WHERE
     s.tipo_evento = 'ASSISTÊNCIA A SAÚDE MEDICO HOSPITALAR'
     AND s.data_evento BETWEEN DATE_SUB(CURRENT_DATE(), INTERVAL 3 MONTH) AND CURRENT_DATE()
 GROUP BY 
-    o.Razao_Social, o.Nome_Fantasia
+    o.Razao_Social, o.nome
 ORDER BY 
     total_despesas DESC
 LIMIT 10;
