@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 SELECT 
     o.Razao_Social,
     o.Nome_Fantasia,
