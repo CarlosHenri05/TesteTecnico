@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Busca no CSV</title>
+  </head>
+  <body>
+    <h1>Pesquisar no CSV</h1>
+
+    <form method="POST">
+      <label for="keyword">Digite a palavra-chave:</label>
+      <input type="text" name="keyword" required />
+      <button type="submit">Buscar</button>
+    </form>
+
+    {% if results %}
+    <h2>Resultados encontrados:</h2>
+    <table>
+      <tr>
+        {% for header in headers %}
+        <th>{{ header }}</th>
+        {% endfor %}
+      </tr>
+      {% for row in results %}
+      <tr>
+        {% for value in row %}
+        <td>{{ value }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+    {% elif results is not none %}
+    <p class="message">Nenhum resultado encontrado.</p>
+    {% endif %}
+  </body>
+</html>
