@@ -12,3 +12,7 @@ Feito para transformar PDF do problema 1 em uma tabela .CSV e renomear colunas e
 
 Simulação de consultas SQL.
 - Todos os arquivos são públicos. 
+
+# API em Flask para pesquisa de dados em um documento CSV
+
+Feito para receber como parâmetro URL uma String que retorna colunas e valores com os parâmetros especificados. 
