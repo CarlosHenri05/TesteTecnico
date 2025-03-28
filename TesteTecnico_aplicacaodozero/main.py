@@ -5,6 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 import os
+import json
 
 app = Flask(__name__)
 
@@ -32,6 +33,8 @@ def index():
     if request.method == 'POST':
         keyword = request.form.get("keyword", "").strip().lower()
 
+        keyword_json = json.dumps({'keyword': keyword})
+
         if keyword and not df.empty:
             # Caso a keyword bata com algo dentro do csv e o df não seja vazio (ou seja, o proprio csv) eles são filtrados e armazenados nas listas anteriormente feitas 
 
@@ -39,19 +42,20 @@ def index():
             results = filtered_df.values.tolist()
             headers = filtered_df.columns.tolist()
 
-    return render_template('index.html', form=form,results=results, headers=headers)
+    return render_template('index.html', form=form, results=results, headers=headers)
 
-@app.route('/api/filter_data', methods=['GET'])
+
+@app.route('/search', methods=['GET'])
 def filter_data():
-    keyword = request.args.get('keyword', '').strip().lower()
+    keyword = request.form.get('keyword', '').strip().lower()
 
-    if keyword and not df.empty:
+    if not df.empty:
         filtered_df = df[df.apply(lambda row: row.astype(str).str.contains(keyword, case=False, na=False).any(), axis=1)]
         results = filtered_df.values.tolist()
         headers = filtered_df.columns.tolist()
-        return jsonify({"headers": headers, "results": results})
-
-    return jsonify({"headers": [], "results": []})
+        return jsonify({'results': results, 'headers': headers})
+    return jsonify({'results': [], 'headers': []})
+    
 
 
 if __name__ == '__main__':
