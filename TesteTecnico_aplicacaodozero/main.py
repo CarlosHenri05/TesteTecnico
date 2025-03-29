@@ -5,13 +5,13 @@ from pathlib import Path
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
-import os
+from dotenv import load_dotenv
 
 
 app = Flask(__name__)
 CORS(app)
 
-os.getenv('.env')
+load_dotenv()
 
 app.config['SECRET_KEY'] = 'FLASK_SECRET_KEY'
 
@@ -75,6 +75,7 @@ def filter_data():
         headers = []
 
     return jsonify({'results': results, 'headers': headers})
-    
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+
+def handler(request, context):
+    return app(request, context)
+
