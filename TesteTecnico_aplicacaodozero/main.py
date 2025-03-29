@@ -76,6 +76,5 @@ def filter_data():
 
     return jsonify({'results': results, 'headers': headers})
 
-def handler(request, context):
-    return app(request, context)
-
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
