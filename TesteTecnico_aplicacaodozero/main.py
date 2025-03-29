@@ -1,62 +1,90 @@
 from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
 import pandas as pd
+import numpy as np
 from pathlib import Path
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 import os
-import json
+
 
 app = Flask(__name__)
+CORS(app)
 
-secret_key = os.urandom(32)
+os.getenv('.env')
 
-app.config['SECRET_KEY'] = secret_key
+app.config['SECRET_KEY'] = 'FLASK_SECRET_KEY'
 
 path = Path(__file__).parent / 'Relatorio_cadop.csv'
 
-df = pd.read_csv(path, sep=';', encoding='latin1')
+
+df = pd.read_csv(path, sep=';', encoding='latin1', low_memory=False)
+df = df.fillna('')
+
 
 class BasicForm(FlaskForm):
     ids = StringField('Keyword', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = BasicForm()
 
-    # Inicialização de lista vazias para depois os dados filtrados no DataFrame serem armazenados aqui
+    # Inicialização das listas vazias
     results = []
     headers = []
-
     if request.method == 'POST':
+
         keyword = request.form.get("keyword", "").strip().lower()
 
-        keyword_json = json.dumps({'keyword': keyword})
-
         if keyword and not df.empty:
-            # Caso a keyword bata com algo dentro do csv e o df não seja vazio (ou seja, o proprio csv) eles são filtrados e armazenados nas listas anteriormente feitas 
-
-            filtered_df = df[df.apply(lambda row: row.astype(str).str.contains(keyword, case=False, na=False).any(), axis=1)]
-            results = filtered_df.values.tolist()
-            headers = filtered_df.columns.tolist()
+            try:
+                
+                filtered_df = df[df.astype(str).apply(lambda row: row.str.contains(keyword, case=False, na=False).any(), axis=1)]
+                results = filtered_df.values.tolist()
+                headers = filtered_df.columns.tolist()
+            except Exception as e:
+                return f'bad request {e}', 400
 
     return render_template('index.html', form=form, results=results, headers=headers)
 
-
 @app.route('/search', methods=['GET'])
 def filter_data():
-    keyword = request.form.get('keyword', '').strip().lower()
-
-    if not df.empty:
-        filtered_df = df[df.apply(lambda row: row.astype(str).str.contains(keyword, case=False, na=False).any(), axis=1)]
-        results = filtered_df.values.tolist()
-        headers = filtered_df.columns.tolist()
-        return jsonify({'results': results, 'headers': headers})
-    return jsonify({'results': [], 'headers': []})
+    # Obter o valor do campo de pesquisa utilizando args pois é get 
+    keyword = request.args.get("keyword", '').strip().lower()
     
+    
+    results = []
+    headers = []
 
+    if not df.empty and keyword:
+        try:
+            
+            filtered_df = df[df.astype(str).apply(lambda row: row.str.contains(keyword, case=False, na=False).any(), axis=1)]
+            
+            filtered_df = filtered_df.fillna('')
+            
+            results = filtered_df.values.tolist()
+            headers = filtered_df.columns.tolist()
+            
+            
+            for i, row in enumerate(results):
+                for j, value in enumerate(row):
+                    # Converter tipos complexos para string
+                    if not isinstance(value, (str, int, float, bool, type(None))):
+                        results[i][j] = str(value)
+                    # Converter NaN para string vazia
+                    if isinstance(value, float) and np.isnan(value):
+                        results[i][j] = ""
+        
+        except Exception as e:
+            return f'bad request {e}', 400
+    else:
+        results = []
+        headers = []
 
+    return jsonify({'results': results, 'headers': headers})
+    
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
