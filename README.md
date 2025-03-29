@@ -18,6 +18,7 @@ Simulação de consultas SQL.
 Feito para receber como parâmetro URL uma String que retorna colunas e valores com os parâmetros especificados. 
 
 Para rodar:
+
 `git clone https://github.com/CarlosHenri05/TesteTecnico.git`
 
 `python3 main.py`
