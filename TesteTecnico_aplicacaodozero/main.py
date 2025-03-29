@@ -67,6 +67,7 @@ def filter_data():
             
             results = filtered_df.values.tolist()
             headers = filtered_df.columns.tolist()
+            
         
         except Exception as e:
             return f'bad request {e}', 400
