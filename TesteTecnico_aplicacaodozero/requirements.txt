@@ -3,4 +3,3 @@ flask-cors
 pandas
 Flask-WTF
 WTForms
-gunicorn
