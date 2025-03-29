@@ -68,7 +68,8 @@ def filter_data():
             results = filtered_df.values.tolist()
             headers = filtered_df.columns.tolist()
             
-            
+            # O(n²) para converter os tipos complexos para string revendo cada campo em cada linha e coluna
+            # Isso é necessário para evitar problemas de serialização JSON, tudo precisa ser retornado como string
             for i, row in enumerate(results):
                 for j, value in enumerate(row):
                     # Converter tipos complexos para string
