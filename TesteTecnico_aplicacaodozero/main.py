@@ -67,17 +67,6 @@ def filter_data():
             
             results = filtered_df.values.tolist()
             headers = filtered_df.columns.tolist()
-            
-            # O(n²) para converter os tipos complexos para string revendo cada campo em cada linha e coluna
-            # Isso é necessário para evitar problemas de serialização JSON, tudo precisa ser retornado como string
-            for i, row in enumerate(results):
-                for j, value in enumerate(row):
-                    # Converter tipos complexos para string
-                    if not isinstance(value, (str, int, float, bool, type(None))):
-                        results[i][j] = str(value)
-                    # Converter NaN para string vazia
-                    if isinstance(value, float) and np.isnan(value):
-                        results[i][j] = ""
         
         except Exception as e:
             return f'bad request {e}', 400
