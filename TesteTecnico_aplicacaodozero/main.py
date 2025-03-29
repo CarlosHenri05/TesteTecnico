@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 import pandas as pd
-import numpy as np
 from pathlib import Path
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
