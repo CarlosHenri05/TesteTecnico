@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "main.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "csv-api/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/search",
+      "dest": "main.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "csv-api/dist/$1"
+    }
+  ]
+}
