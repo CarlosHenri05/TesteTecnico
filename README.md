@@ -27,3 +27,4 @@ Para rodar:
 
 `npm run serve`
 O port local normalmente fica no 8080 do projeto flask.
+![c053466c-80d5-49cf-83e1-60ed63a9775b](https://github.com/user-attachments/assets/c291c701-8026-4278-971f-8acb31d072c4)
