@@ -15,7 +15,7 @@ Simulação de consultas SQL.
 
 # API em Flask para pesquisa de dados em um documento CSV
 
-Feito para receber como parâmetro URL uma String que retorna colunas e valores com os parâmetros especificados. 
+Feito para receber como parâmetro URL uma String que retorna colunas e valores com os parâmetros especificados dentro do documento CSV. 
 
 Para rodar:
 
