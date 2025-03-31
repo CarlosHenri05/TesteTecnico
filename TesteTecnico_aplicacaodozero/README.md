@@ -60,6 +60,8 @@ curl "http://localhost:5000/search?keyword=exemplo"
   "headers": ["Coluna1", "Coluna2", "Coluna3"]
 }
 ```
+![38f7a30e-69ae-42af-a14d-4f865e36184f](https://github.com/user-attachments/assets/b800152d-5ba4-4e3d-b8ba-405f9c15e199)
+
 
 ## Licença
 Este projeto está sob a licença MIT.
