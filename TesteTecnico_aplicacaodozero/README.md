@@ -14,8 +14,8 @@ Esta aplicação consiste em um frontend desenvolvido em Vue.js e um backend em 
 ### Backend (Flask)
 1. Clone este repositório:
    ```sh
-   git clone <repo-url>
-   cd <repo-folder>
+   git clone https://github.com/CarlosHenri05/TesteTecnico.git
+   cd TesteTecnico_aplicacaodozero
    ```
 2. Crie um ambiente virtual e instale as dependências:
    ```sh
@@ -37,7 +37,7 @@ Esta aplicação consiste em um frontend desenvolvido em Vue.js e um backend em 
    ```
 2. Execute o servidor Vue.js:
    ```sh
-   npm run dev
+   npm run serve
    ```
 
 ## Endpoints da API
@@ -47,11 +47,6 @@ Busca dados no CSV filtrando por uma palavra-chave.
 
 **Parâmetros:**
 - `keyword` (string) - Palavra-chave para filtrar os dados.
-
-**Exemplo de requisição:**
-```sh
-curl "http://localhost:5000/search?keyword=exemplo"
-```
 
 **Resposta:**
 ```json
