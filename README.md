@@ -15,4 +15,16 @@ Simulação de consultas SQL.
 
 # API em Flask para pesquisa de dados em um documento CSV
 
-Feito para receber como parâmetro URL uma String que retorna colunas e valores com os parâmetros especificados. 
+Feito para receber como parâmetro URL uma String que retorna colunas e valores com os parâmetros especificados dentro do documento CSV. 
+
+Para rodar:
+
+`git clone https://github.com/CarlosHenri05/TesteTecnico.git`
+
+`python3 main.py`
+
+`cd csv-api`
+
+`npm run serve`
+O port local normalmente fica no 8080 do projeto flask.
+![c053466c-80d5-49cf-83e1-60ed63a9775b](https://github.com/user-attachments/assets/c291c701-8026-4278-971f-8acb31d072c4)
