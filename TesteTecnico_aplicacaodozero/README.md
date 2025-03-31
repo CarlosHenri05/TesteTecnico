@@ -25,7 +25,7 @@ Esta aplicação consiste em um frontend desenvolvido em Vue.js e um backend em 
    ```
 3. Execute a aplicação Flask:
    ```sh
-   python main.py
+   python .\backend\main.py
    ```
 
 ### Frontend (Vue.js)
