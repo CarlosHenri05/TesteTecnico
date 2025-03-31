@@ -2,3 +2,5 @@
 /.env
 /package.json
 /csv-api/node_modules
+/.vercel
+
