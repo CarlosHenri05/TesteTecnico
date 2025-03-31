@@ -1,3 +1,4 @@
+-- Substitua pelo caminho do seu documento local
 
 \copy testetecnico.primeirotrimestre2023 from '\TesteTecnico\TesteTecnico_criartabelassql\arquivos_csv\1T2023.csv' WITH DELIMITER ';' CSV
 \copy testetecnico.segundotrimestre2023 from '\TesteTecnico\TesteTecnico_criartabelassql\arquivos_csv\2T2023.csv' WITH DELIMITER ';' CSV
