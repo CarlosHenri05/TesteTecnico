@@ -23,8 +23,7 @@ Esta aplicação consiste em um frontend desenvolvido em Vue.js e um backend em 
    source venv/bin/activate  # No Windows, use venv\Scripts\activate
    pip install -r requirements.txt
    ```
-3. Coloque o arquivo `Relatorio_cadop.csv` na raiz do projeto.
-4. Execute a aplicação Flask:
+3. Execute a aplicação Flask:
    ```sh
    python main.py
    ```
